@@ -1,0 +1,12 @@
+:headers = <<
+Content-Type: application/json
+#
+
+
+# cowsay
+GET http://localhost:8080/cowsay/
+:headers
+
+# cowsay custom
+GET http://localhost:8080/cowsay/Profound words of wisdom
+:headers

@@ -1,0 +1,2 @@
+[workspace]
+members = ["crypto-wallet", "shell",  "hn-gui", "cowsay-web"]
