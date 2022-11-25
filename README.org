@@ -1,0 +1,14 @@
+** Rust Mini Projects
+
+This project is meant to be a playground for a bunch of little mini projects for learning and
+practicing Rust
+
+*** Hacker News GUI
+Use egui to render top 20 story articles with links
+*** Crypto Wallet
+Basic ETH crypto wallet generation and transaction signing/sending
+*** Cowsay Web
+Simple HTTP server that serves ~cowsay~ commands to the user
+*** Shell
+Simple Rust command line shell
+
