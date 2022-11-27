@@ -1,2 +1,3 @@
 [workspace]
-members = ["crypto-wallet", "shell",  "hn-gui", "cowsay-web"]
+members = ["crypto-wallet", "shell",  "hn-gui", "cowsay-web", "qrcode"]
+resolver = "2"
