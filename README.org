@@ -11,4 +11,6 @@ Basic ETH crypto wallet generation and transaction signing/sending
 Simple HTTP server that serves ~cowsay~ commands to the user
 *** Shell
 Simple Rust command line shell
+*** Linux Webcam Wifi QR code Reader
+Gluing several packages to read a qr code containing wifi info and automatically connect
 

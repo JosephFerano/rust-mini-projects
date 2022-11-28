@@ -39,12 +39,7 @@ fn parse_qr_code_string(code: &String) -> Option<Wifi> {
     }
 }
 
-fn main() {
-    // let img: image::DynamicImage = image::open("/home/joe/Downloads/qr-code.jpg").unwrap();
-    // let decoder = bardecoder::default_decoder();
-    //
-    // let results = decoder.decode(&img);
-
+fn webcam_capture() {
     let index = CameraIndex::Index(0);
     let requested = RequestedFormat::new::<RgbFormat>(RequestedFormatType::HighestFrameRate(30));
     let mut camera = Camera::new(index, requested).unwrap();
@@ -55,22 +50,29 @@ fn main() {
     let decoded = frame.decode_image::<RgbFormat>().unwrap();
     decoded.save("/home/joe/Downloads/test-capture.png").unwrap();
     println!("Decoded Frame of {} length", decoded.len());
-    return;
-    // for result in results {
-    //     match result {
-    //         Ok(code) => {
-    //             if let Some(wifi) = parse_qr_code_string(&code) {
-    //                 let conf = Config {
-    //                     interface: Some("wlp2s0")
-    //                 };
-    //                 let mut conn = WiFi::new(Some(conf));
-    //                 match conn.connect(&wifi.ssid_name, &wifi.password) {
-    //                     Ok(result) => println!("{}", if result { "Connected!" } else { "Invalid Password!" }),
-    //                     Err(err) => eprintln!("Error occurred: {:?}", err),
-    //                 }
-    //             }
-    //         }
-    //         Err(_) => {}
-    //     }
-    // }
+}
+
+fn main() {
+    let img: image::DynamicImage = image::open("/home/joe/Downloads/qr-code.jpg").unwrap();
+    let decoder = bardecoder::default_decoder();
+
+    let results = decoder.decode(&img);
+
+    for result in results {
+        match result {
+            Ok(code) => {
+                if let Some(wifi) = parse_qr_code_string(&code) {
+                    let conf = Config {
+                        interface: Some("wlp2s0")
+                    };
+                    let mut conn = WiFi::new(Some(conf));
+                    match conn.connect(&wifi.ssid_name, &wifi.password) {
+                        Ok(result) => println!("{}", if result { "Connected!" } else { "Invalid Password!" }),
+                        Err(err) => eprintln!("Error occurred: {:?}", err),
+                    }
+                }
+            }
+            Err(_) => {}
+        }
+    }
 }
